@@ -34,9 +34,11 @@
 
   /* ── タグライン（最上部の大見出し） ── */
   .hero{margin:4px 0 16px;}
-  .hero-ttl{margin:0;font-size:30px;line-height:1.3;font-weight:800;color:var(--t0);letter-spacing:.01em;}
+  .hero-ttl{margin:0;font-size:30px;line-height:1.3;font-weight:800;color:var(--t0);letter-spacing:.01em;white-space:nowrap;}
   .hero-ttl .em{color:var(--me);}
-  @media(max-width:680px){.hero-ttl{font-size:23px;}}
+  /* PCは1行（折り返さない）。画面が狭ければフォントを少し縮める。スマホは折り返し可。 */
+  @media(max-width:900px){.hero-ttl{font-size:26px;}}
+  @media(max-width:680px){.hero-ttl{font-size:22px;white-space:normal;}}
 
   /* ── VS ヘッダ ── */
   .vs{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:10px;margin-bottom:6px;}
@@ -48,6 +50,23 @@
   .vs-nm{font-weight:800;font-size:16px;color:var(--t0);line-height:1.2;}
   .vs-sub{font-size:11px;color:var(--t2);margin-top:2px;}
   .vs-mid{font-weight:800;font-size:15px;color:var(--t3);padding:0 4px;}
+
+  /* ── note 紹介バナー ── */
+  .note-cta{display:flex;align-items:center;gap:14px;text-decoration:none;
+    background:linear-gradient(135deg,color-mix(in srgb,var(--ai) 18%,var(--panel)),var(--panel));
+    border:1px solid color-mix(in srgb,var(--ai) 45%,var(--line));border-radius:14px;
+    padding:13px 16px;margin:0 0 16px;box-shadow:var(--shadow);transition:transform .12s,border-color .12s;}
+  .note-cta:hover{transform:translateY(-1px);border-color:var(--ai);}
+  .note-cta-ic{width:40px;height:40px;border-radius:10px;flex:none;display:grid;place-items:center;
+    font-size:20px;background:color-mix(in srgb,var(--ai) 22%,transparent);}
+  .note-cta-h{font-size:15.5px;font-weight:800;color:var(--t0);line-height:1.3;}
+  .note-cta-h .note-em{color:var(--ai);font-weight:800;}
+  .note-cta-d{font-size:12px;color:var(--t2);margin-top:3px;}
+  .note-cta-btn{margin-left:auto;flex:none;font-size:13px;font-weight:800;color:#06231f;
+    background:var(--ai);border-radius:10px;padding:9px 16px;white-space:nowrap;
+    box-shadow:0 4px 14px -4px color-mix(in srgb,var(--ai) 70%,transparent);transition:transform .12s;}
+  .note-cta:hover .note-cta-btn{transform:translateX(2px);}
+  @media(max-width:560px){.note-cta-d{display:none;} .note-cta-btn{padding:8px 12px;}}
 
   /* ── コントロール ── */
   .ctrl{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:16px;}
@@ -95,7 +114,7 @@
 <body>
 <div class="wrap">
   <div class="hero">
-    <h1 class="hero-ttl">AIと<span class="em">共創（競走）</span>する研究の、<br>隠さない全記録</h1>
+    <h1 class="hero-ttl">AIと<span class="em">共創（競走）</span>する研究の、隠さない全記録</h1>
   </div>
   <div class="vs">
     <div class="vs-side me">
@@ -110,6 +129,16 @@
       <div><div class="vs-nm">AI MINERVA</div><div class="vs-sub">完全自動</div></div>
     </div>
   </div>
+
+  <!-- note 紹介バナー -->
+  <a class="note-cta" href="https://note.com/anemone_boat" target="_blank" rel="noopener">
+    <div class="note-cta-ic">🚤</div>
+    <div>
+      <div class="note-cta-h">予想 × 開発日記、<span class="note-em">note</span> で公開中！</div>
+      <div class="note-cta-d">AIと挑む競艇研究のリアル。当たった日も、外してシステム修正する日々も、全部書いてます</div>
+    </div>
+    <div class="note-cta-btn">読んでみる →</div>
+  </a>
 
   <div class="ctrl">
     <div class="seg" id="seg-period">
@@ -174,11 +203,11 @@
       <li><b>AI MINERVA は低い数字からのスタート</b>。チューニングで人間に追いついていく過程こそ、見てほしい部分です。</li>
     </ul>
   </div>
-  <div class="foot">最終更新 2026-06-07 23:02 ・ 出典: MINERVA 投票DB（確定済み・返還反映）</div>
+  <div class="foot">最終更新 2026-06-07 23:24 ・ 出典: MINERVA 投票DB（確定済み・返還反映）</div>
 </div>
 
 <script>
-const DATA = {"manual": {"races": 194, "inv": 603800, "ret": 681340, "hits": 91, "recov": 112.8, "hitrate": 46.9, "span": ["2026-04-29", "2026-06-06"], "days": 24, "series": [{"d": "2026-04-29", "inv": 22400, "ret": 4400, "hits": 1, "races": 6, "pnl": -18000, "cum": -18000, "recov": 19.6}, {"d": "2026-04-30", "inv": 12900, "ret": 0, "hits": 0, "races": 4, "pnl": -12900, "cum": -30900, "recov": 12.5}, {"d": "2026-05-01", "inv": 21200, "ret": 16120, "hits": 3, "races": 5, "pnl": -5080, "cum": -35980, "recov": 36.3}, {"d": "2026-05-02", "inv": 41600, "ret": 23800, "hits": 4, "races": 12, "pnl": -17800, "cum": -53780, "recov": 45.2}, {"d": "2026-05-03", "inv": 21700, "ret": 26980, "hits": 6, "races": 7, "pnl": 5280, "cum": -48500, "recov": 59.5}, {"d": "2026-05-04", "inv": 22200, "ret": 36690, "hits": 5, "races": 7, "pnl": 14490, "cum": -34010, "recov": 76.0}, {"d": "2026-05-05", "inv": 21700, "ret": 60120, "hits": 6, "races": 8, "pnl": 38420, "cum": 4410, "recov": 102.7}, {"d": "2026-05-06", "inv": 33100, "ret": 60760, "hits": 7, "races": 12, "pnl": 27660, "cum": 32070, "recov": 116.3}, {"d": "2026-05-07", "inv": 19500, "ret": 10650, "hits": 3, "races": 8, "pnl": -8850, "cum": 23220, "recov": 110.7}, {"d": "2026-05-09", "inv": 39000, "ret": 101400, "hits": 9, "races": 14, "pnl": 62400, "cum": 85620, "recov": 133.5}, {"d": "2026-05-10", "inv": 30300, "ret": 32740, "hits": 3, "races": 8, "pnl": 2440, "cum": 88060, "recov": 130.8}, {"d": "2026-05-12", "inv": 14000, "ret": 4750, "hits": 4, "races": 8, "pnl": -9250, "cum": 78810, "recov": 126.3}, {"d": "2026-05-13", "inv": 25100, "ret": 30620, "hits": 6, "races": 12, "pnl": 5520, "cum": 84330, "recov": 126.0}, {"d": "2026-05-15", "inv": 23900, "ret": 11180, "hits": 4, "races": 7, "pnl": -12720, "cum": 71610, "recov": 120.5}, {"d": "2026-05-16", "inv": 18900, "ret": 7850, "hits": 2, "races": 6, "pnl": -11050, "cum": 60560, "recov": 116.5}, {"d": "2026-05-17", "inv": 24000, "ret": 40730, "hits": 3, "races": 5, "pnl": 16730, "cum": 77290, "recov": 119.7}, {"d": "2026-05-24", "inv": 14300, "ret": 4350, "hits": 2, "races": 5, "pnl": -9950, "cum": 67340, "recov": 116.6}, {"d": "2026-05-26", "inv": 23200, "ret": 82520, "hits": 3, "races": 6, "pnl": 59320, "cum": 126660, "recov": 129.5}, {"d": "2026-05-27", "inv": 36400, "ret": 3840, "hits": 2, "races": 12, "pnl": -32560, "cum": 94100, "recov": 120.2}, {"d": "2026-05-29", "inv": 19000, "ret": 1850, "hits": 1, "races": 6, "pnl": -17150, "cum": 76950, "recov": 115.9}, {"d": "2026-05-30", "inv": 45500, "ret": 9430, "hits": 3, "races": 12, "pnl": -36070, "cum": 40880, "recov": 107.7}, {"d": "2026-06-03", "inv": 18100, "ret": 19200, "hits": 3, "races": 6, "pnl": 1100, "cum": 41980, "recov": 107.7}, {"d": "2026-06-04", "inv": 15500, "ret": 9340, "hits": 2, "races": 5, "pnl": -6160, "cum": 35820, "recov": 106.4}, {"d": "2026-06-06", "inv": 40300, "ret": 82020, "hits": 9, "races": 13, "pnl": 41720, "cum": 77540, "recov": 112.8}]}, "shadow": {"races": 58, "inv": 112000, "ret": 51270, "hits": 14, "recov": 45.8, "hitrate": 24.1, "span": ["2026-05-25", "2026-06-07"], "days": 13, "series": [{"d": "2026-05-25", "inv": 24200, "ret": 4910, "hits": 2, "races": 12, "pnl": -19290, "cum": -19290, "recov": 20.3}, {"d": "2026-05-26", "inv": 22800, "ret": 7010, "hits": 2, "races": 12, "pnl": -15790, "cum": -35080, "recov": 25.4}, {"d": "2026-05-27", "inv": 22800, "ret": 2600, "hits": 2, "races": 12, "pnl": -20200, "cum": -55280, "recov": 20.8}, {"d": "2026-05-28", "inv": 2100, "ret": 0, "hits": 0, "races": 1, "pnl": -2100, "cum": -57380, "recov": 20.2}, {"d": "2026-05-30", "inv": 6000, "ret": 22590, "hits": 1, "races": 3, "pnl": 16590, "cum": -40790, "recov": 47.6}, {"d": "2026-05-31", "inv": 6000, "ret": 3590, "hits": 2, "races": 3, "pnl": -2410, "cum": -43200, "recov": 48.5}, {"d": "2026-06-01", "inv": 4000, "ret": 0, "hits": 0, "races": 2, "pnl": -4000, "cum": -47200, "recov": 46.3}, {"d": "2026-06-02", "inv": 4000, "ret": 5050, "hits": 2, "races": 2, "pnl": 1050, "cum": -46150, "recov": 49.8}, {"d": "2026-06-03", "inv": 12000, "ret": 2600, "hits": 2, "races": 6, "pnl": -9400, "cum": -55550, "recov": 46.5}, {"d": "2026-06-04", "inv": 2100, "ret": 2920, "hits": 1, "races": 1, "pnl": 820, "cum": -54730, "recov": 48.4}, {"d": "2026-06-05", "inv": 2000, "ret": 0, "hits": 0, "races": 1, "pnl": -2000, "cum": -56730, "recov": 47.5}, {"d": "2026-06-06", "inv": 3000, "ret": 0, "hits": 0, "races": 2, "pnl": -3000, "cum": -59730, "recov": 46.2}, {"d": "2026-06-07", "inv": 1000, "ret": 0, "hits": 0, "races": 1, "pnl": -1000, "cum": -60730, "recov": 45.8}]}, "generated_at": "2026-06-07 23:02"};
+const DATA = {"manual": {"races": 194, "inv": 603800, "ret": 681340, "hits": 91, "recov": 112.8, "hitrate": 46.9, "span": ["2026-04-29", "2026-06-06"], "days": 24, "series": [{"d": "2026-04-29", "inv": 22400, "ret": 4400, "hits": 1, "races": 6, "pnl": -18000, "cum": -18000, "recov": 19.6}, {"d": "2026-04-30", "inv": 12900, "ret": 0, "hits": 0, "races": 4, "pnl": -12900, "cum": -30900, "recov": 12.5}, {"d": "2026-05-01", "inv": 21200, "ret": 16120, "hits": 3, "races": 5, "pnl": -5080, "cum": -35980, "recov": 36.3}, {"d": "2026-05-02", "inv": 41600, "ret": 23800, "hits": 4, "races": 12, "pnl": -17800, "cum": -53780, "recov": 45.2}, {"d": "2026-05-03", "inv": 21700, "ret": 26980, "hits": 6, "races": 7, "pnl": 5280, "cum": -48500, "recov": 59.5}, {"d": "2026-05-04", "inv": 22200, "ret": 36690, "hits": 5, "races": 7, "pnl": 14490, "cum": -34010, "recov": 76.0}, {"d": "2026-05-05", "inv": 21700, "ret": 60120, "hits": 6, "races": 8, "pnl": 38420, "cum": 4410, "recov": 102.7}, {"d": "2026-05-06", "inv": 33100, "ret": 60760, "hits": 7, "races": 12, "pnl": 27660, "cum": 32070, "recov": 116.3}, {"d": "2026-05-07", "inv": 19500, "ret": 10650, "hits": 3, "races": 8, "pnl": -8850, "cum": 23220, "recov": 110.7}, {"d": "2026-05-09", "inv": 39000, "ret": 101400, "hits": 9, "races": 14, "pnl": 62400, "cum": 85620, "recov": 133.5}, {"d": "2026-05-10", "inv": 30300, "ret": 32740, "hits": 3, "races": 8, "pnl": 2440, "cum": 88060, "recov": 130.8}, {"d": "2026-05-12", "inv": 14000, "ret": 4750, "hits": 4, "races": 8, "pnl": -9250, "cum": 78810, "recov": 126.3}, {"d": "2026-05-13", "inv": 25100, "ret": 30620, "hits": 6, "races": 12, "pnl": 5520, "cum": 84330, "recov": 126.0}, {"d": "2026-05-15", "inv": 23900, "ret": 11180, "hits": 4, "races": 7, "pnl": -12720, "cum": 71610, "recov": 120.5}, {"d": "2026-05-16", "inv": 18900, "ret": 7850, "hits": 2, "races": 6, "pnl": -11050, "cum": 60560, "recov": 116.5}, {"d": "2026-05-17", "inv": 24000, "ret": 40730, "hits": 3, "races": 5, "pnl": 16730, "cum": 77290, "recov": 119.7}, {"d": "2026-05-24", "inv": 14300, "ret": 4350, "hits": 2, "races": 5, "pnl": -9950, "cum": 67340, "recov": 116.6}, {"d": "2026-05-26", "inv": 23200, "ret": 82520, "hits": 3, "races": 6, "pnl": 59320, "cum": 126660, "recov": 129.5}, {"d": "2026-05-27", "inv": 36400, "ret": 3840, "hits": 2, "races": 12, "pnl": -32560, "cum": 94100, "recov": 120.2}, {"d": "2026-05-29", "inv": 19000, "ret": 1850, "hits": 1, "races": 6, "pnl": -17150, "cum": 76950, "recov": 115.9}, {"d": "2026-05-30", "inv": 45500, "ret": 9430, "hits": 3, "races": 12, "pnl": -36070, "cum": 40880, "recov": 107.7}, {"d": "2026-06-03", "inv": 18100, "ret": 19200, "hits": 3, "races": 6, "pnl": 1100, "cum": 41980, "recov": 107.7}, {"d": "2026-06-04", "inv": 15500, "ret": 9340, "hits": 2, "races": 5, "pnl": -6160, "cum": 35820, "recov": 106.4}, {"d": "2026-06-06", "inv": 40300, "ret": 82020, "hits": 9, "races": 13, "pnl": 41720, "cum": 77540, "recov": 112.8}]}, "shadow": {"races": 58, "inv": 112000, "ret": 51270, "hits": 14, "recov": 45.8, "hitrate": 24.1, "span": ["2026-05-25", "2026-06-07"], "days": 13, "series": [{"d": "2026-05-25", "inv": 24200, "ret": 4910, "hits": 2, "races": 12, "pnl": -19290, "cum": -19290, "recov": 20.3}, {"d": "2026-05-26", "inv": 22800, "ret": 7010, "hits": 2, "races": 12, "pnl": -15790, "cum": -35080, "recov": 25.4}, {"d": "2026-05-27", "inv": 22800, "ret": 2600, "hits": 2, "races": 12, "pnl": -20200, "cum": -55280, "recov": 20.8}, {"d": "2026-05-28", "inv": 2100, "ret": 0, "hits": 0, "races": 1, "pnl": -2100, "cum": -57380, "recov": 20.2}, {"d": "2026-05-30", "inv": 6000, "ret": 22590, "hits": 1, "races": 3, "pnl": 16590, "cum": -40790, "recov": 47.6}, {"d": "2026-05-31", "inv": 6000, "ret": 3590, "hits": 2, "races": 3, "pnl": -2410, "cum": -43200, "recov": 48.5}, {"d": "2026-06-01", "inv": 4000, "ret": 0, "hits": 0, "races": 2, "pnl": -4000, "cum": -47200, "recov": 46.3}, {"d": "2026-06-02", "inv": 4000, "ret": 5050, "hits": 2, "races": 2, "pnl": 1050, "cum": -46150, "recov": 49.8}, {"d": "2026-06-03", "inv": 12000, "ret": 2600, "hits": 2, "races": 6, "pnl": -9400, "cum": -55550, "recov": 46.5}, {"d": "2026-06-04", "inv": 2100, "ret": 2920, "hits": 1, "races": 1, "pnl": 820, "cum": -54730, "recov": 48.4}, {"d": "2026-06-05", "inv": 2000, "ret": 0, "hits": 0, "races": 1, "pnl": -2000, "cum": -56730, "recov": 47.5}, {"d": "2026-06-06", "inv": 3000, "ret": 0, "hits": 0, "races": 2, "pnl": -3000, "cum": -59730, "recov": 46.2}, {"d": "2026-06-07", "inv": 1000, "ret": 0, "hits": 0, "races": 1, "pnl": -1000, "cum": -60730, "recov": 45.8}]}, "generated_at": "2026-06-07 23:24"};
 const yen = n => (n>=0?"+¥":"−¥") + Math.abs(Math.round(n)).toLocaleString();
 let PERIOD = "all", MODE = "rate";
 
